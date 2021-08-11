@@ -1,10 +1,10 @@
-#Some notes
+# Some notes
 So we can keep in sync with installations: 
 ```
 pip -r requirements.txt
 ```
 
-#Helpful Django tutorial
+# Helpful Django tutorial
 
 link: https://medium.com/swlh/build-your-first-rest-api-with-django-rest-framework-e394e39a482c
 
