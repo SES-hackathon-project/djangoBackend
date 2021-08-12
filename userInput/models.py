@@ -16,7 +16,7 @@ class Hangout(models.Model):
 
     group_size = models.IntegerField(default=1)
 
-    number_submitted = models.IntegerField(default=1)
+    number_submitted = models.IntegerField(default=0)
 
     def __str__(self):
         return self.group_id
@@ -30,7 +30,7 @@ Budget has a many-to-one relationship with Hangout.
 
 
 class Budgets(models.Model):
-    hangout_group = models.ForeignKey('Hangout', on_delete=models.CASCADE)
+    hangout_id = models.IntegerField()
 
     budget_amount = models.IntegerField()
 
