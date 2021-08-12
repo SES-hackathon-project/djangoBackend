@@ -38,3 +38,8 @@ in the format:
 - this method also increases the hangout object's number_submitted field by 1
 
 
+## get final budget calculation
+- GET request to  http://localhost:8000/final_budget/{group_id} 
+
+
+
