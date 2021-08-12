@@ -16,3 +16,13 @@ def create_hangout(request):
         serializer.save()
         return Response(serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def view_hangout(request, group_id):
+    try:
+        hangout = Hangout.objects.get(group_id=group_id)
+        serializer = HangoutSerializer(hangout)
+        return Response(serializer.data)
+    except Hangout.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)

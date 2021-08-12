@@ -10,23 +10,13 @@ a class to store information on hangout group:
 class Hangout(models.Model):
     group_id = models.IntegerField()
 
-    budget_choices = [
-        ('least', 'least'),
-        ('median', 'median'),
-        ('average', 'average')
-    ]
-
-    budget_type = models.CharField(
-        max_length=7,
-        choices=budget_choices,
-        default='least',
-    )
+    budget_type = models.CharField(max_length=10)
 
     zipcode = models.IntegerField()
 
     group_size = models.IntegerField(default=1)
 
-    number_submitted = models.IntegerField(default=0)
+    number_submitted = models.IntegerField(default=1)
 
     def __str__(self):
         return self.group_id
