@@ -57,7 +57,7 @@ MIDDLEWARE = [
 
     # CORS
     'corsheaders.middleware.CorsMiddleware'
-    'django.middleware.common.CommonMiddleware'
+    # 'django.middleware.common.CommonMiddleware'
 ]
 
 ROOT_URLCONF = 'backend.urls'
