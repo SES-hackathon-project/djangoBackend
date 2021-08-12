@@ -14,6 +14,7 @@ python -m venv venv
 #if you are using windows:
 venv\Scripts\activate
 ```
+``
 #if you are using mac:
 source venv\bin\activate
 ```
