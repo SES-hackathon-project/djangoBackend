@@ -1,4 +1,7 @@
 # Django backend set up instructions
+
+Before you start, make sure you have python/pip installed on your system.
+
 1. (in command line) clone repository, cd into repository, then create virtualenv
 ```
 git clone https://github.com/SES-hackathon-project/djangoBackend.git
