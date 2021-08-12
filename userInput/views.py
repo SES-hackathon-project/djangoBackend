@@ -1,20 +1,50 @@
 from django.http.response import Http404
 from django.shortcuts import render
 
-from .models import Hangout
+from .models import Hangout, Budgets
 from .serializers import HangoutSerializer, BudgetSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.decorators import api_view
+from random import randrange
+
+
+def create_unique_id():
+
+    def generate_random():
+        return randrange(100000, 999999)
+
+    def check_unique(new_id):
+        try:
+            Hangout.objects.get(group_id=new_id)
+            return False
+        except Hangout.DoesNotExist:
+            return True
+
+    id = generate_random()
+    unique = check_unique(id)
+
+    while(unique == False):
+        id = generate_random()
+        unique = check_unique(id)
+
+    return id
 
 
 @api_view(['POST'])
 def create_hangout(request):
     serializer = HangoutSerializer(data=request.data)
     if serializer.is_valid():
+
         serializer.save()
-        return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+        new_hangout = Hangout.objects.get(group_id=5432)
+        new_hangout.group_id = create_unique_id()
+
+        new_serializer = HangoutSerializer(new_hangout)
+
+        return Response(new_serializer.data, status=status.HTTP_201_CREATED)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 

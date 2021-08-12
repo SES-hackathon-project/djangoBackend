@@ -5,7 +5,17 @@
 format:
 ```
 {
-    "group_id": {int},
+    "budget_type": {int},
+    "zipcode": {int},
+    "group_size": {int},
+    "number_submitted": {int}
+}
+```
+
+will return back: 
+```
+{
+    "group_id":{random unique 6-digit int passcode}
     "budget_type": {int},
     "zipcode": {int},
     "group_size": {int},
