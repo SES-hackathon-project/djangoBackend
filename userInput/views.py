@@ -37,6 +37,8 @@ def submit_budget(request, group_id):
         try:
             hangout = Hangout.objects.get(group_id=group_id)
             hangout.number_submitted = hangout.number_submitted + 1
+            hangout.save()
+            budget_serializer.save()
             return Response(budget_serializer.data, status=status.HTTP_201_CREATED)
 
         except Hangout.DoesNotExist:
