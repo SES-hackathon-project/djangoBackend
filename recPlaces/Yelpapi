@@ -22,4 +22,8 @@ def yelprequest(location,budget,term):
         print(business['name'])
     
 
+<<<<<<< HEAD:userInput/Yelpapi.py
 yelprequest('Washington DC',2,'movies')
+=======
+yelprequest('Washington DC',2)
+>>>>>>> 8c1f5a2e6f0ddd580285d5eb137b76171550f667:recPlaces/Yelpapi

@@ -1,13 +1,36 @@
-# Some notes
-So we can keep in sync with installations: 
+# Django backend set up instructions
+
+Before you start, make sure you have python/pip installed on your system.
+
+1. (in command line) clone repository, cd into repository, then create virtualenv
+```
+git clone https://github.com/SES-hackathon-project/djangoBackend.git
+```
+```
+cd djangoBackend
+```
+```
+python -m venv venv
+```
+2. activate virtualenv
+```
+#if you are using windows:
+venv\Scripts\activate
+```
+```
+#if you are using mac:
+source venv\bin\activate
+```
+3. install requirements
 ```
 pip -r requirements.txt
 ```
+4. migrate to set up SQLite database tables
+```
+python manage.py makemigrations
+```
+```
+python manage.py migrate
+```
+5. For documentation on the APIs, refer to the github readme's within the userInput and recPlaces folders.
 
-# Helpful Django tutorial
-
-link: https://medium.com/swlh/build-your-first-rest-api-with-django-rest-framework-e394e39a482c
-
-I did up to step 1.3
-- folder recPlaces is the app for the restaurant recommendations API
-- folder userInput is the app for handle user input API
