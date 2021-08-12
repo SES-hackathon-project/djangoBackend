@@ -6,12 +6,11 @@ cd djangoBackend
 python -m venv venv
 ```
 2. activate virtualenv
-if you are using windows:
 ```
+#if you are using windows:
 venv\Scripts\activate
-```
-if you are using mac:
-```
+
+#if you are using mac:
 source venv\bin\activate
 ```
 3. install requirements
