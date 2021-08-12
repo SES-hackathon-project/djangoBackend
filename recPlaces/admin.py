@@ -1,5 +1,4 @@
 from django.contrib import admin
-from .models import Hangout, Budgets
+from .models import Place
 
-admin.site.register(Hangout)
-admin.site.register(Budgets)
+admin.site.register(Place)

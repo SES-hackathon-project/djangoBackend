@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # created apps
     'userInput',
+    'recPlaces',
     'rest_framework',
 
     # CORS
