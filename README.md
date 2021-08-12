@@ -1,5 +1,6 @@
-# Django backend set up instructions
+# BACKEND: how to set up, API documentation
 
+## How to set up
 Before you start, make sure you have python/pip installed on your system.
 
 1. (in command line) clone repository, cd into repository, then create virtualenv
@@ -32,5 +33,13 @@ python manage.py makemigrations
 ```
 python manage.py migrate
 ```
-5. For documentation on the APIs, refer to the github readme's within the userInput and recPlaces folders.
+5. Run the backend server
+```
+python manage.py runserver
+```
+6. for reference on API endpoints, see the "API documentation" section below.
+
+## API documentation
+
+for the userInput API: https://github.com/SES-hackathon-project/djangoBackend/tree/master/userInput
 
