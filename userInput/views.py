@@ -1,8 +1,10 @@
 from django.http.response import Http404
 from django.shortcuts import render
+from django.core import serializers
+import math
 
-from .models import Hangout, Budgets
-from .serializers import HangoutSerializer, BudgetSerializer
+from .models import Hangout, Budgets, FinalBudget
+from .serializers import HangoutSerializer, BudgetSerializer, FinalBudgetSerializer
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
@@ -39,8 +41,9 @@ def create_hangout(request):
 
         serializer.save()
 
-        new_hangout = Hangout.objects.get(group_id=5432)
+        new_hangout = Hangout.objects.get(group_id=777)
         new_hangout.group_id = create_unique_id()
+        new_hangout.save()
 
         new_serializer = HangoutSerializer(new_hangout)
 
@@ -75,3 +78,54 @@ def submit_budget(request, group_id):
             return Response(status=status.HTTP_404_NOT_FOUND)
 
     return Response(budget_serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['GET'])
+def final_budget(request, hangout_id):
+
+    try:
+        hangout = Hangout.objects.get(group_id=hangout_id)
+        calculation = hangout.budget_type
+        budgets = []
+        length = 0
+        query_budgets = Budgets.objects.filter(hangout_id=hangout_id)
+        budget_dict = serializers.serialize("python", query_budgets)
+        print(budget_dict)
+
+        for budget in budget_dict:
+            budgets.append(budget.get('fields').get('budget_amount'))
+            length = length+1
+
+        budgets.sort()
+
+        print("WUIREQWIOEWQIODPWIKOP")
+        print(budgets)
+
+        finalbudget = FinalBudget.objects.create(hangout_id=hangout_id)
+
+        if (calculation == 1):
+            finalbudget.final_budget = budgets[0]
+
+        if (calculation == 2):
+            median_index = 0
+            if (length % 2 == 0):
+                median_index = (math.floor(length/2))
+            else:
+                median_index = (math.floor(length/2))+1
+
+            print("FJIDOFIOWQRP:QUWIORPEQIREQOPRQ")
+            print(median_index)
+
+            finalbudget.final_budget = budgets[median_index]
+
+        if (calculation == 3):
+            sum = 0
+            for b in budgets:
+                sum = sum + b
+            finalbudget.final_budget = math.floor(sum/length)
+
+        finalbudget_serialize = FinalBudgetSerializer(finalbudget)
+        return Response(finalbudget_serialize.data)
+
+    except Hangout.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
