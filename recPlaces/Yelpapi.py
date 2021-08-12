@@ -11,7 +11,7 @@ def yelprequest(location,budget,term):
                 'location': location,
                 'price': budget,
                 'radius': 10000,
-                'limit': 30
+                'limit': 10
                 }
 
     response = requests.get(url, params = parameters, headers = head)
