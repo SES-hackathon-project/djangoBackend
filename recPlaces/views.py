@@ -40,8 +40,6 @@ def create_unique_id():
 @api_view(['POST'])
 def add_like(request, id):
     place = Place.objects.get(id=id)
-    print("______________________________________")
-    print(place)
     place.num_likes = place.num_likes + 1
     place.save()
     place_ser = HangoutSerializer(place)
@@ -50,16 +48,9 @@ def add_like(request, id):
 
 @api_view(['POST'])
 def find_recs(request, location, budget, term, ids):
-    # serializer = HangoutSerializer(data=request.data)
-    # if serializer.is_valid():
-    #     serializer.save()
-
     businesses = yelprequest(location, budget, term)
-    print(businesses)
 
     for business in businesses:
-        print("__________________________________________________")
-        print(business['name'])
         new_place = Place.objects.create(
             name=business['name'],
             ids=ids,
@@ -67,11 +58,6 @@ def find_recs(request, location, budget, term, ids):
             rating=business['rating'],
             id=create_unique_id()
         )
-        # new_place.num_likes = 0
-        # new_place.name = business['name']
-        # new_place.url = business['url']
-        # new_place.rating = business['rating']
-        # new_place.ids = ids
         new_place.save()
 
     data = Place.objects.filter(ids=ids)
