@@ -10,7 +10,7 @@ a class to store information on hangout group:
 class Hangout(models.Model):
     group_id = models.IntegerField(default=777)
     budget_type = models.IntegerField()
-    zipcode = models.IntegerField()
+    zipcode = models.CharField(max_length=10)
     group_size = models.IntegerField(default=1)
     number_submitted = models.IntegerField(default=0)
 

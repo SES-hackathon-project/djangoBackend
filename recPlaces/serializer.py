@@ -5,5 +5,4 @@ from rest_framework import serializers
 class HangoutSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Place
-        fields = ('num_likes', 'name','url','rating','ids')
-        
+        fields = ('id', 'num_likes', 'name', 'url', 'rating', 'ids')
