@@ -18,8 +18,7 @@ def yelprequest(location,budget,term):
 
     data = response.json()
     
-    for business in data['businesses']:
-        print(business['name'])
+    return data['businesses']
     
-
+    
 yelprequest('Washington DC',2,'movies')
